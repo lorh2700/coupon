@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kakao.dy.api.coupon.dao.CouponMapper;
+import com.kakao.dy.api.coupon.dao.CouponDao;
 import com.kakao.dy.util.CouponUtil;
 
 @Service("couponService")
 public class CouponService {
 	
 	@Autowired
-	private CouponMapper mapper;
+	private CouponDao mapper;
 	
 	@Autowired
 	private CouponUtil cUtil;

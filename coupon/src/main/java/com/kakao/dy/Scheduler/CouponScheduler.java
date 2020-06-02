@@ -6,15 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.kakao.dy.api.coupon.dao.CouponMapper;
+import com.kakao.dy.api.coupon.dao.CouponDao;
 
 public class CouponScheduler {
 	
 	@Autowired
-	CouponMapper mapper;
+	CouponDao mapper;
 
 	/**
-	 * // 매시간 만료일 3일 남은 쿠폰에 대해 사용자에게 메시지를 보냄
+	 * // 매시간 만료일 3일 남은 쿠폰에 대해 사용자에게 메시지 출력
 	 * @throws Exception
 	 */
 	@Scheduled(cron="0 0 * * * *")  

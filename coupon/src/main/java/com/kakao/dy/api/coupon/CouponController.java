@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.kakao.dy.api.coupon.dao.CouponMapper;
+import com.kakao.dy.api.coupon.dao.CouponDao;
 import com.kakao.dy.api.coupon.service.CouponService;
 
 @RestController
@@ -26,7 +26,7 @@ public class CouponController {
 	CouponService couponService;
 	
 	@Autowired
-	CouponMapper mapper;
+	CouponDao mapper;
 	
 	/**
 	 *  쿠폰 등록 
