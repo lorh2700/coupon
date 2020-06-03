@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="com.kakao.dy.api.coupon.dao.CouponDao">
 	
-<!-- 	<select id="addCoupon" parameterType="String">
+	<select id="addCoupon" parameterType="String">
 				
-	</select> -->
+	</select>
 	
 </mapper>

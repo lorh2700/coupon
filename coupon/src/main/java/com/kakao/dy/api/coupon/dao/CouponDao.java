@@ -19,6 +19,5 @@ public class CouponDao {
 		sqlSession.insert("addCoupon", couponList);
 	}
 
-//	public List<HashMap<String, String>> checkExpireCoupon();
 	
 }
