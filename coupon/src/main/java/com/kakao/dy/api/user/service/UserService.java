@@ -4,20 +4,25 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.kakao.dy.api.user.vo.Login;
-import com.kakao.dy.common.TokenProvider;
 import com.kakao.dy.common.BaseConstants;
+import com.kakao.dy.util.TokenProvider;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.impl.DefaultClaims;
 
+@Service
 public class UserService {
 	
 	@Autowired
 	TokenProvider tokenProvider;
 
 	public ResponseEntity<Object> login(Login login) {
-
+		
+		
+		
 		
 		
 		return null;
@@ -32,7 +37,7 @@ public class UserService {
 		// 갱신토큰 생성
 		String svcRfsToken 	= tokenProvider.generateToken(BaseConstants.RFSH_TOKEN, claims);		// Refresh Token Generate (API 접근 토큰 만료 시 갱신해주는 토큰)
 		
-		HashMap result = new HashMap();																// 결과 정보를 입력하는 DataMap 
+		HashMap result = new HashMap();																
 		result.put(BaseConstants.ACSS_TOKEN, 	svcAcsToken);
 		result.put(BaseConstants.RFSH_TOKEN, 	svcRfsToken);
 		return result;

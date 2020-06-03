@@ -3,12 +3,22 @@ package com.kakao.dy.api.coupon.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
-public interface CouponDao {
+@Repository("couponDao")
+public class CouponDao {
 	
-	public void addCoupon(List<String> couponList) throws Exception;
+	@Autowired
+	@Qualifier("sqlSessionTemplate")
+	private SqlSession sqlSession;
+	
+	public void addCoupon(List<String> couponList) {
+		sqlSession.insert("addCoupon", couponList);
+	}
 
-	public List<HashMap<String, String>> checkExpireCoupon();
+//	public List<HashMap<String, String>> checkExpireCoupon();
 	
 }

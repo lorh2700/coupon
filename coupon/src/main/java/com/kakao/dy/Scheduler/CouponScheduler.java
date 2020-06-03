@@ -19,10 +19,10 @@ public class CouponScheduler {
 	 */
 	@Scheduled(cron="0 0 * * * *")  
 	public void checkExpireCoupon() throws Exception {
-		List<HashMap<String, String>> checkExpireCoupon = mapper.checkExpireCoupon();
-		for (int i = 0; i < checkExpireCoupon.size(); i++) {
-			String couponId = checkExpireCoupon.get(i).get("couponId");
-			System.out.println("만료전까지 3일 남았습니다. couponId : " + couponId);
-		}
+//		List<HashMap<String, String>> checkExpireCoupon = mapper.checkExpireCoupon();
+//		for (int i = 0; i < checkExpireCoupon.size(); i++) {
+//			String couponId = checkExpireCoupon.get(i).get("couponId");
+//			System.out.println("만료전까지 3일 남았습니다. couponId : " + couponId);
+//		}
 	}
 }

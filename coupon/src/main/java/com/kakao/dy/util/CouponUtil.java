@@ -1,11 +1,13 @@
 package com.kakao.dy.util;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 import org.slf4j.Logger;
 
+@Component
 public class CouponUtil {
 	
 		private static final Logger logger = LoggerFactory.getLogger(CouponUtil.class);

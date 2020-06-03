@@ -2,6 +2,19 @@
 <!DOCTYPE configuration PUBLIC "-//www.mybatis.org//DTD Config 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-config.dtd">  
     
 <configuration>
+	<settings>
+		<setting name="cacheEnabled"              	value="ture"/>  
+        <setting name="lazyLoadingEnabled"        	value="false"/>  
+        <setting name="multipleResultSetsEnabled" 	value="true"/>  
+        <setting name="useColumnLabel"            	value="true"/>  
+        <setting name="useGeneratedKeys"          	value="false"/>  
+        <setting name="defaultExecutorType"       	value="REUSE"/>
+        <setting name="callSettersOnNulls" 			value="true"/>
+	</settings>
 
+    <mappers>     	
+    	<mapper resource="mapper/CouponMapper.xml" />
+    	<mapper resource="mapper/UserMapper.xml" />
+	</mappers>
 
 </configuration> 

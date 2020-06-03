@@ -1,12 +1,8 @@
 package com.kakao.dy.api.coupon;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +40,9 @@ public class CouponController {
 	@RequestMapping(value="/coupon",method=RequestMethod.GET)
 	public @ResponseBody ResponseEntity<Object> sendCoupon(HttpServletRequest request) throws Exception {
 		
-		return null;
+		String user = "dypark";
+		
+		return couponService.couponGet(user);
 	}
 	
 	

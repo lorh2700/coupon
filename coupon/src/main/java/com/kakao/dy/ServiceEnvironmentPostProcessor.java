@@ -26,21 +26,13 @@ public class ServiceEnvironmentPostProcessor implements EnvironmentPostProcessor
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
       
-    	String location = System.getProperty("prprty.location");
-        
-    	Resource resource = null;
-    	if (location != null) {    	
-    		resource = new PathResource(location);
-    	} else { 
-    		resource = new ClassPathResource(DEFAULT_MY_FRAMEWORK_PROPERTIES_LOCATION);
-    	}
+    	Resource resource = new ClassPathResource(DEFAULT_MY_FRAMEWORK_PROPERTIES_LOCATION);
         load(environment, resource);
     }
 
     private void load(ConfigurableEnvironment environment, Resource resource) {
         String propertyName = DEFAULT_MY_FRAMEWORK_PROPERTIES;
     	try {
-        	
     		PropertySource<?> propertySource = propertySourceLoader.load(propertyName, resource, null);
             if (propertySource != null) {
                 environment.getPropertySources().addLast(propertySource);

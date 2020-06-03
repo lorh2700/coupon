@@ -16,7 +16,7 @@ import com.kakao.dy.util.CouponUtil;
 public class CouponService {
 	
 	@Autowired
-	private CouponDao mapper;
+	private CouponDao couponDao;
 	
 	@Autowired
 	private CouponUtil cUtil;
@@ -31,9 +31,15 @@ public class CouponService {
 			couponList.add(cUtil.generateCoupon());
 		}
 		
-		mapper.addCoupon(couponList);
+		couponDao.addCoupon(couponList);
 		
 		return new ResponseEntity<Object>(null, HttpStatus.OK);
+	}
+
+	public ResponseEntity<Object> couponGet(String user) {
+		
+		
+		return null;
 	}
 
 }
