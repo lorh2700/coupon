@@ -5,12 +5,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-import org.slf4j.Logger;
 
 @Component
 public class CouponUtil {
 	
-		private static final Logger logger = LoggerFactory.getLogger(CouponUtil.class);
+//		private static final Logger logger = LoggerFactory.getLogger(CouponUtil.class);
 		
 		private final char COUPON_SPACER_CHAR = '-';
 		private final int COUPON_PREFIX = 5;
@@ -21,8 +20,8 @@ public class CouponUtil {
 			                                            'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 
 			                                            'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
 	    
-	    public String generateCoupon() {
-	        Random random = new Random(System.currentTimeMillis());
+	    public String generateCoupon(int count) {
+	        Random random = new Random(System.currentTimeMillis() + count);
 	        int tablelength = characterTable.length;
 	        StringBuffer buf = new StringBuffer();
 	        

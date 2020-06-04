@@ -5,8 +5,63 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="com.kakao.dy.api.coupon.dao.CouponDao">
 	
-	<select id="addCoupon" parameterType="String">
-				
-	</select>
-	
+ 	<insert id="addCoupon" parameterType="java.util.ArrayList"> 	
+ 		INSERT INTO public.coupon
+			(coupon_id, coupon_use, created_time)
+		VALUES
+	    <foreach collection="list" item="item" separator=" , ">
+            (#{item}, false, now())
+        </foreach>
+ 	</insert>
+ 	
+ 	<update id="updateCoupon" parameterType="hashMap">
+	 	<selectKey keyProperty="coupon_id" resultType="java.lang.String" order="BEFORE">
+	 		select coupon_id from coupon where owner is null limit 1 
+	 	</selectKey>
+ 		UPDATE public.coupon
+		SET owner = #{user_name}
+		WHERE coupon_id=#{coupon_id} and coupon_use=false;
+ 	</update>
+ 	
+	<resultMap type="com.kakao.dy.api.coupon.vo.CouponVO" id="couponResult">
+		<result property="coupon_id"			column="coupon_id"/>
+		<result property="coupon_use"			column="coupon_use"/>
+		<result property="created_time"			column="created_time"/>
+		<result property="expire_time" 	column="expire_time"/>
+		<result property="owner" 		column="owner"/>
+	</resultMap>
+ 	<select id="getCoupon" parameterType="String" resultMap="couponResult">
+ 		SELECT coupon_id, coupon_use, created_time, expire_time, owner
+		FROM public.coupon
+		WHERE owner = #{user}
+ 	</select>
+ 	
+ 	<update id="useCoupon" parameterType="hashMap">
+ 		UPDATE public.coupon
+		SET coupon_use=true
+		WHERE coupon_id=#{coupon_id} and owner = #{user}
+ 	</update>
+ 	
+ 	<update id="reuseCoupon" parameterType="hashMap">
+ 		UPDATE public.coupon
+		SET coupon_use=false, owner = null
+		WHERE coupon_id=#{coupon_id} and owner = #{user}
+ 	</update>
+ 	
+ 	<select id="expiredCoupon" parameterType="String" resultMap="couponResult">
+ 		SELECT coupon_id, coupon_use, created_time, expire_time, owner
+		FROM public.coupon
+		<![CDATA[		
+		WHERE expire_time < now();
+	    ]]>		
+ 	</select>
+ 	
+ 	<select id="checkExpireCoupon">
+ 		SELECT coupon_id, coupon_use, created_time, expire_time, owner
+		FROM public.coupon
+		<![CDATA[		
+		WHERE expire_time =  now()::date + 3
+	    ]]>	
+ 	</select>
+ 	
 </mapper>
