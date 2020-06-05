@@ -56,11 +56,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	    ]]>		
  	</select>
  	
- 	<select id="checkExpireCoupon">
+ 	<select id="checkExpireCoupon" resultMap="couponResult">
  		SELECT coupon_id, coupon_use, created_time, expire_time, owner
 		FROM public.coupon
 		<![CDATA[		
-		WHERE expire_time =  now()::date + 3
+		WHERE DATE(expire_time) =  now()::date + 3
 	    ]]>	
  	</select>
  	

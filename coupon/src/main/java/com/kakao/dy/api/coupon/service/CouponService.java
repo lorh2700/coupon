@@ -30,6 +30,10 @@ public class CouponService {
 		
 		ArrayList<String> couponList = new ArrayList<String>();
 		
+		if(cvo == null || cvo.getCoupon_count() == 0) {
+			return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+		}
+				
 		for(int i = 0; i<cvo.getCoupon_count(); i++) {
 			couponList.add(cUtil.generateCoupon(i));
 			System.out.println(cUtil.generateCoupon(i));
