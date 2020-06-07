@@ -5,5 +5,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="com.kakao.dy.api.coupon.dao.UserDao">
 	
+	<select id="authLogin" parameterType="hashMap" resultType="string">
+		select user_password from users where user_id = #{user_id}	
+	</select>
 
 </mapper>

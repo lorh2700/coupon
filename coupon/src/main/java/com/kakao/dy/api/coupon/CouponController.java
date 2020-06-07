@@ -2,22 +2,22 @@ package com.kakao.dy.api.coupon;
 
 
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.kakao.dy.api.coupon.dao.CouponDao;
 import com.kakao.dy.api.coupon.service.CouponService;
 import com.kakao.dy.api.coupon.vo.CouponVO;
+import com.kakao.dy.common.BaseConstants;
+import com.kakao.dy.util.TokenProvider;
 
 @RestController
 public class CouponController {
@@ -28,11 +28,14 @@ public class CouponController {
 	@Autowired
 	CouponDao mapper;
 	
+	@Autowired
+	TokenProvider tokenProvider;
+	
 	/**
 	 *  쿠폰 등록 
 	 * 랜덤한 코드의 쿠폰을 N개 생성하여 데이터베이스에 보관하는 API를 구현하세요.*/	
 	@RequestMapping(value="/coupon", method=RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Object> addCoupon1(@RequestBody CouponVO cvo) throws Exception {
+	public @ResponseBody ResponseEntity<Object> addCoupon(@RequestBody CouponVO cvo) throws Exception {
 		return couponService.couponPost(cvo);		
 		
 	}
@@ -41,8 +44,8 @@ public class CouponController {
 	 * 생성된 쿠폰중 하나를 사용자에게 지급하는 API를 구현하세요
 	 */
 	@RequestMapping(value="/coupon",method=RequestMethod.GET)
-	public @ResponseBody ResponseEntity<Object> sendCoupon(HttpServletRequest request) throws Exception {		
-		String user = "dypark";
+	public @ResponseBody ResponseEntity<Object> sendCoupon(HttpServletRequest request) throws Exception {
+		String user = tokenProvider.getUserName(request.getHeader(BaseConstants.ACSS_TOKEN));
 		return couponService.couponGet(user);
 	}
 	
@@ -60,18 +63,17 @@ public class CouponController {
 	 * 지급된 쿠폰중 하나를 사용하는 API를 구현하세요. (쿠폰 재사용은 불가)
 	 */
 	@RequestMapping(value="/coupon",method=RequestMethod.PUT)
-	public @ResponseBody ResponseEntity<Object> useCoupon(@RequestBody CouponVO coupon) throws Exception {
-		String user = "dypark";
+	public @ResponseBody ResponseEntity<Object> useCoupon(HttpServletRequest request, @RequestBody CouponVO coupon) throws Exception {
+		String user = tokenProvider.getUserName(request.getHeader(BaseConstants.ACSS_TOKEN));
 		return couponService.couponUse(user, coupon);
 	}
-	
 	
 	/**
 	 *  지급된 쿠폰중 하나를 사용 취소하는 API를 구현하세요. (취소된 쿠폰 재사용 가능)
 	 */
 	@RequestMapping(value="/reuse_coupon",method=RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Object> reuseCoupon(@RequestBody CouponVO coupon) throws Exception {
-		String user = "dypark";
+	public @ResponseBody ResponseEntity<Object> reuseCoupon(HttpServletRequest request, @RequestBody CouponVO coupon) throws Exception {
+		String user = tokenProvider.getUserName(request.getHeader(BaseConstants.ACSS_TOKEN));
 		return couponService.reuseCoupon(user, coupon);
 	}	
 	

@@ -5,18 +5,17 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Login {
 
 	@NotEmpty
-	private String userId;
+	private String user_id;
 	
 	@NotEmpty
 	private String pwd;
 	
-
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getPwd() {

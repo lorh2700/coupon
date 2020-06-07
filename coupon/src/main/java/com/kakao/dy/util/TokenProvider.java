@@ -55,6 +55,12 @@ public class TokenProvider {
 		return generateToken(tokenType, claims);
 	}
 	
+	public String getUserName(String token) {
+		Claims claims = getClaimsFromToken(token);
+		String userName = String.valueOf(claims.get("user_id")); 
+		return userName;
+	}
+	
 	/**
 	 * 클레임 정보 조회
 	 * 

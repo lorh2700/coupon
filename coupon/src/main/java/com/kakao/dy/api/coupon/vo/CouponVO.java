@@ -9,7 +9,6 @@ public class CouponVO {
 	private Timestamp created_time;
 	private Timestamp expire_time;
 	private String owner;
-	
 	private int coupon_count;
 	
 	public int getCoupon_count() {
