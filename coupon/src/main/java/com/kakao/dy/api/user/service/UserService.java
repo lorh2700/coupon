@@ -1,7 +1,5 @@
 package com.kakao.dy.api.user.service;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.HashMap;
 
 import javax.security.auth.message.AuthException;

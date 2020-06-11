@@ -70,7 +70,6 @@ public class CouponControllerTests {
     	assertEquals(content, jsonObject.toString());
     }
     
-    //생성된 쿠폰중 하나를 사용자에게 지급하는 API를 구현하세요
     @Test
     public void getCoupon_test() throws Exception {
     	String uri = "/coupon";
@@ -86,8 +85,6 @@ public class CouponControllerTests {
     	assertEquals(content, jsonObject.toString());
     }
   
-    //사용자에게 지급된 쿠폰을 조회하는 API를 구현하세요.
-    ///coupon/{userId}
      @Test
      public void getCouponList_test() throws Exception {
     	String uri = "/coupon/dypark";
@@ -104,8 +101,6 @@ public class CouponControllerTests {
     	assertEquals(content, jsonObject.toString());
     }
 
-    //지급된 쿠폰중 하나를 사용하는 API를 구현하세요. (쿠폰 재사용은 불가)
-    //coupon put
     @Test
     public void useCoupon_test() throws Exception {
     	String uri = "/coupon";
@@ -123,7 +118,6 @@ public class CouponControllerTests {
     }
     
     
-    //지급된 쿠폰중 하나를 사용 취소하는 API를 구현하세요. (취소된 쿠폰 재사용 가능)
     @Test
     public void cancleCoupon_test() throws Exception {
     	String uri = "/reuse_coupon";
@@ -140,8 +134,6 @@ public class CouponControllerTests {
     	assertEquals(content, jsonObject.toString());
     }    
 
-    //expired_coupon
-    //발급된 쿠폰중 당일 만료된 전체 쿠폰 목록을 조회하는 API를 구현하세요.
     @Test
     public void expiredCoupon_test() throws Exception {
     	String uri = "/expired_coupon";
